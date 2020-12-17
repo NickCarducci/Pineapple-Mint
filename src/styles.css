@@ -1,0 +1,18 @@
+* {
+  cursor: pointer;
+  margin: 0px;
+  margin: 0px;
+}
+.App {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: rgb(218, 198, 90);
+  color: rgb(200, 100, 100);
+}
