@@ -55,7 +55,8 @@ class App extends React.Component {
         const resizeObserver = new ResizeObserver((entries) => {
           if (this.size.current) {
             for (let entry of entries) {
-              var size = this.size.current.offsetHeight; //entry.target.offsetHeight;
+              var size = entry.target.offsetHeight;
+              //var size = this.size.current.offsetHeight;
 
               if (size > window.innerHeight * 0.35) {
                 !this.state.scrolling && this.setState({ scrolling: true });
