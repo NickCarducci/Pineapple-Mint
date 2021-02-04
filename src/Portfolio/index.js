@@ -21,6 +21,42 @@ class Portfolio extends React.Component {
           }}
         >
           <iframe
+            src="https://carducci.sh"
+            style={{
+              border: "3px solid black",
+              borderRadius: "20px",
+              height: "100px",
+              width: "100%"
+            }}
+            title="carducci.sh"
+          />
+          <a href="https://carducci.sh">carducci.sh</a>
+        </div>
+        <div
+          style={{
+            margin: "10px",
+            width: "160px"
+          }}
+        >
+          <iframe
+            src="https://thumbprint.us"
+            style={{
+              border: "3px solid black",
+              borderRadius: "20px",
+              height: "100px",
+              width: "100%"
+            }}
+            title="thumbprint.us"
+          />
+          <a href="https://thumbprint.us">thumbprint.us</a>
+        </div>
+        <div
+          style={{
+            margin: "10px",
+            width: "160px"
+          }}
+        >
+          <iframe
             src="https://wavv.art"
             style={{
               border: "3px solid black",
@@ -121,6 +157,62 @@ class Portfolio extends React.Component {
             title="vaults.biz"
           />
           <a href="https://vaults.biz">vaults.biz</a>
+        </div>
+        <div
+          style={{
+            margin: "10px",
+            width: "160px"
+          }}
+        >
+          <iframe
+            src="https://micro-theory.com"
+            style={{
+              border: "3px solid black",
+              borderRadius: "20px",
+              height: "100px",
+              width: "100%"
+            }}
+            title="micro-theory.com"
+          />
+          <a href="https://micro-theory.com">micro-theory.com</a>
+        </div>
+        <div
+          style={{
+            margin: "10px",
+            width: "160px"
+          }}
+        >
+          <iframe
+            src="https://nationalsecuritycasino.com"
+            style={{
+              border: "3px solid black",
+              borderRadius: "20px",
+              height: "100px",
+              width: "100%"
+            }}
+            title="micro-theory.com"
+          />
+          <a href="https://nationalsecuritycasino.com">
+            nationalsecuritycasino.com
+          </a>
+        </div>
+        <div
+          style={{
+            margin: "10px",
+            width: "160px"
+          }}
+        >
+          <iframe
+            src="https://browser.glass"
+            style={{
+              border: "3px solid black",
+              borderRadius: "20px",
+              height: "100px",
+              width: "100%"
+            }}
+            title="browser.glass or slmbrswr.com"
+          />
+          <a href="https://browser.glass">browser.glass</a>
         </div>
       </div>
     );
