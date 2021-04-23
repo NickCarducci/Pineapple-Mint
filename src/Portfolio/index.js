@@ -1,6 +1,7 @@
 import React from "react";
 
 class Portfolio extends React.Component {
+  state = {};
   render() {
     return (
       <div
@@ -8,6 +9,8 @@ class Portfolio extends React.Component {
           justifyContent: "center",
           display: "flex",
           zIndex: "1",
+          overflow: "hidden",
+          height: this.props.scrolling ? "min-content" : "0px",
           flexWrap: "wrap",
           width: "100%",
           marginTop: "20px",
@@ -20,16 +23,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://carducci.sh"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="carducci.sh"
-          />
           <a href="https://carducci.sh">carducci.sh</a>
         </div>
         <div
@@ -38,16 +31,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://thumbprint.us"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="thumbprint.us"
-          />
           <a href="https://thumbprint.us">thumbprint.us</a>
         </div>
         <div
@@ -56,16 +39,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://wavv.art"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="wavv.art"
-          />
           <a href="https://wavv.art">wavv.art</a>
         </div>
         <div
@@ -74,16 +47,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://froth.app"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="froth.app"
-          />
           <a href="https://froth.app">froth.app</a>
         </div>
         <div
@@ -92,16 +55,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://book.com.co"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="book.com.co"
-          />
           <a href="https://book.com.co">book.com.co</a>
         </div>
         <div
@@ -110,16 +63,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://scopes.cc"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="scopes.cc"
-          />
           <a href="https://scopes.cc">scopes.cc</a>
         </div>
         <div
@@ -128,16 +71,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://saverparty.xyz"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="saverparty.xyz"
-          />
           <a href="https://saverparty.xyz">saverparty.xyz</a>
         </div>
         <div
@@ -146,16 +79,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://vaults.biz"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="vaults.biz"
-          />
           <a href="https://vaults.biz">vaults.biz</a>
         </div>
         <div
@@ -164,16 +87,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://micro-theory.com"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="micro-theory.com"
-          />
           <a href="https://micro-theory.com">micro-theory.com</a>
         </div>
         <div
@@ -182,16 +95,6 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
-          <iframe
-            src="https://nationalsecuritycasino.com"
-            style={{
-              border: "3px solid black",
-              borderRadius: "20px",
-              height: "100px",
-              width: "100%"
-            }}
-            title="micro-theory.com"
-          />
           <a href="https://nationalsecuritycasino.com">
             nationalsecuritycasino.com
           </a>
@@ -202,18 +105,20 @@ class Portfolio extends React.Component {
             width: "160px"
           }}
         >
+          <a href="https://browser.glass">browser.glass</a>
+        </div>
+        {this.state.hoverURL && (
           <iframe
-            src="https://browser.glass"
+            src={this.state.hoverURL}
             style={{
               border: "3px solid black",
               borderRadius: "20px",
               height: "100px",
               width: "100%"
             }}
-            title="browser.glass or slmbrswr.com"
+            title={this.state.hoverURL}
           />
-          <a href="https://browser.glass">browser.glass</a>
-        </div>
+        )}
       </div>
     );
   }
