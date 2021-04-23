@@ -15,14 +15,21 @@ class App extends React.Component {
   }
   componentDidUpdate = () => {
     if (this.state.width !== this.state.lastWidth) {
-      this.state.off && this.setState({ off: false });
-      clearTimeout(this.widthUpdate);
-      this.widthUpdate = setTimeout(() => {
-        this.setState({
+      this.setState(
+        {
           lastWidth: this.state.width,
           off: this.state.width < 500
-        });
-      }, 300);
+        },
+        () => {
+          clearTimeout(this.widthUpdate);
+          this.widthUpdate = setTimeout(() => {
+            this.setState({
+              lastWidth: this.state.width,
+              off: this.state.width < 500
+            });
+          }, 300);
+        }
+      );
     }
   };
   componentDidMount = () => {
@@ -38,18 +45,15 @@ class App extends React.Component {
       let height = window.innerHeight; // * 0.01;
       document.documentElement.style.setProperty("--vw", `${width}px`);
       document.documentElement.style.setProperty("--vh", `${height}px`);
-      width = window.innerWidth;
-      height = window.innerHeight;
-      this.setState({
-        width,
-        height
-      });
+
+      this.setState({ width: window.innerWidth, height: window.innerHeight });
     }, 200);
   };
   componentDidUpdate = () => {
+    const { scrolling, potentialScroll } = this.state;
     if (
       !this.state.sizeListenerMounted &&
-      this.state.potentialScroll !== this.state.lastPotentialScroll
+      potentialScroll !== this.state.lastPotentialScroll
     ) {
       if (this.size && this.size.current) {
         const resizeObserver = new ResizeObserver((entries) => {
@@ -59,7 +63,7 @@ class App extends React.Component {
               //var size = this.size.current.offsetHeight;
 
               if (size > window.innerHeight * 0.35) {
-                !this.state.scrolling && this.setState({ scrolling: true });
+                !scrolling && this.setState({ scrolling: true });
               }
             }
           }
@@ -68,18 +72,28 @@ class App extends React.Component {
         resizeObserver.observe(this.size.current);
         this.setState({ sizeListenerMounted: true });
       }
-      this.setState({ lastPotentialScroll: this.state.potentialScroll });
+      this.setState({ lastPotentialScroll: potentialScroll });
     }
-    if (this.state.scrolling !== this.state.lastScrolling) {
-      if (!this.state.scrolling) {
+    if (scrolling !== this.state.lastScrolling) {
+      if (!scrolling) {
         setTimeout(() => this.setState({ allowScroll: true }), 3000);
       }
-      this.setState({ lastScrolling: this.state.scrolling });
+      this.setState({ lastScrolling: scrolling });
     }
   };
   render() {
+    const { scrolling, potentialScroll } = this.state;
     var pineapple =
       "https://www.dl.dropboxusercontent.com/s/b39nuagbp7cceju/pineapple-mint.png?dl=0";
+    const snapStyle = {
+      opacity: scrolling ? 0.2 : 0.7,
+      backgroundColor: scrolling ? "rgba(20,20,20,.3)" : "",
+      marginTop: scrolling ? "0px" : "auto",
+      maxHeight: scrolling ? "0%" : "40%",
+      height: potentialScroll ? "100%" : "113px",
+      top: potentialScroll ? "10px" : "0",
+      transition: scrolling ? ".3s" : "3s ease-in"
+    };
     return (
       <div
         onMouseEnter={() =>
@@ -88,19 +102,7 @@ class App extends React.Component {
         onMouseLeave={() => this.setState({ potentialScroll: false })}
         className="App"
       >
-        <div
-          ref={this.size}
-          style={{
-            backgroundColor: this.state.scrolling ? "rgba(20,20,20,.3)" : "",
-            opacity: this.state.scrolling ? "0" : "1",
-            zIndex: this.state.scrolling ? "-9999" : "",
-            marginTop: this.state.scrolling ? "0px" : "auto",
-            maxHeight: this.state.scrolling ? "0%" : "40%",
-            height: this.state.potentialScroll ? "100%" : "113px",
-            top: this.state.potentialScroll ? "10px" : "0",
-            transition: this.state.scrolling ? ".3s" : "3s ease-in"
-          }}
-        >
+        <div ref={this.size} style={snapStyle}>
           <img
             style={{
               top: "5%",
@@ -127,10 +129,10 @@ class App extends React.Component {
           <h1>Pineapple-mint.com</h1>
           experiences / tools
         </div>
-        <Portfolio />
+        <Portfolio scrolling={scrolling} />
         <div
           onClick={
-            this.state.scrolling
+            scrolling
               ? () =>
                   this.setState({
                     scrolling: false,
@@ -140,14 +142,11 @@ class App extends React.Component {
               : () => this.setState({ potentialScroll: false })
           }
           style={{
-            alignSelf: this.state.scrolling ? "flex-end" : "",
+            alignSelf: scrolling ? "flex-end" : "",
             border: "1px solid",
-            opacity:
-              this.state.scrolling || this.state.potentialScroll ? "1" : "0",
-            height:
-              this.state.scrolling || this.state.potentialScroll ? "40px" : "0",
-            width:
-              this.state.scrolling || this.state.potentialScroll ? "40px" : "0"
+            opacity: scrolling || potentialScroll ? "1" : "0",
+            height: scrolling || potentialScroll ? "40px" : "0",
+            width: scrolling || potentialScroll ? "40px" : "0"
           }}
         >
           &times;
